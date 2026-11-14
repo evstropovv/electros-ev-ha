@@ -44,10 +44,10 @@ def parse_charger_state(message: str) -> dict:
         int(parts[9]) / 10 if len(parts) > 9 and parts[9].isdigit() else None
     )
     mains_voltage = None
-    if len(parts) > 16 and parts[16].isdigit():
-        mains_voltage = int(parts[16])
-    elif len(parts) > 10 and parts[10].isdigit():
+    if len(parts) > 10 and parts[10].isdigit():
         mains_voltage = int(parts[10])
+    elif len(parts) > 16 and parts[16].isdigit():
+        mains_voltage = int(parts[16])
     charging_power_w = None
     if measured_current is not None and mains_voltage is not None:
         charging_power_w = round(measured_current * mains_voltage, 1)
